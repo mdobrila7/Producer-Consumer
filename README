@@ -1,0 +1,23 @@
+    Tema 1 ASC 
+    Dobrila Madalin 334CA
+
+    Am implementat tema folosind solutia problemei producator-consumator.
+Producatorii sunt procese daemon (ruleaza in fundal si nu se termina pana
+nu decide programul acest lucru). Fiecare producator va incerca sa produca
+bunuri in ordinea specificata de un numar foarte mare de ori (100000), simuland
+astfel continuitatea. In functie de operatia pe care o are de executat, un
+cumparator va adauga sau va scoate produse din cos, pentru fiecare cart.
+Am implementat solutia pentru mai multe carturi per consumator, cu toate ca
+in teste fiecare consumator are atribuit un cart.
+    Structurile de date principale din marketplace sunt:
+- producers, care este un vector de 2 dictionare: primul dictionar contine
+produsele care au fost adaugate in cart, iar al 2 lea contine produsele ce
+au fost scoase din cart. Cand un nou produs este cerut este cautat in toate
+listele de produse din cele 2 dictionare.
+- product_to_producer, care este un dictionar ce face maparea intre un bun
+si producatorul ce l-a produs; important pentru cand un consumator scoate
+bunul din cos ca sa stie in care lista sa o puna.
+    Id-urile sunt generate random si in mod unic, iar maparea dintre id
+si cart/producator se face printr-un dictionar.
+    Am folosit lock numai la printare intrucat operatiile de adaugare si
+stergere din liste sunt thread-safe, deci nu era nevoie de lock.
